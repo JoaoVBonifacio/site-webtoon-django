@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# Coleta os arquivos estáticos
-python manage.py collectstatic --noinput
+echo "Build script iniciado..."
 
-# Roda as migrações do banco de dados
-python manage.py migrate
+# Coleta os arquivos estáticos usando python3
+python3 manage.py collectstatic --noinput
+
+# Roda as migrações do banco de dados usando python3
+python3 manage.py migrate
+
+echo "Build script finalizado."
