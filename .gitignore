@@ -1,0 +1,17 @@
+# Arquivos do Python
+__pycache__/
+*.pyc
+
+# Ambiente Virtual
+venv/
+.env
+
+# Banco de dados local do Django
+db.sqlite3
+
+# Arquivos de mídia que os usuários sobem
+media/
+
+# Arquivos de IDEs
+.vscode/
+.idea/

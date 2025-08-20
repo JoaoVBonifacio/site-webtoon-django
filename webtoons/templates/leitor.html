@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ capitulo.webtoon.titulo }} - Capítulo {{ capitulo.numero }}</title>
+    <style>
+        body {
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .leitor-container {
+            max-width: 800px;
+            width: 100%;
+        }
+        .leitor-container img {
+            width: 100%;
+            display: block; /* Remove pequenos espaços entre as imagens */
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="leitor-container">
+        {% for pagina in capitulo.paginas.all %}
+            <img src="{{ pagina.imagem.url }}" alt="Página {{ pagina.ordem }}">
+        {% empty %}
+            <p style="color: white; text-align: center;">Este capítulo ainda não tem imagens.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

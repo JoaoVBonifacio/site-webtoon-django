@@ -1,0 +1,41 @@
+{% load static %} <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEO Webtoons</title>
+    <link rel="stylesheet" href="{% static 'webtoons/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Lançamentos</h1>
+
+        <div class="webtoon-grid">
+            {% for webtoon in lista_webtoons %}
+                <a href="{% url 'detalhes_webtoon' webtoon.id %}" class="webtoon-card"> {% if webtoon.capa %}
+                        <img src="{{ webtoon.capa.url }}" alt="Capa de {{ webtoon.titulo }}" class="cover-image">
+                    {% else %}
+                        <img src="https://via.placeholder.com/180x250.png?text=Sem+Capa" alt="Sem capa" class="cover-image">
+                    {% endif %}
+
+                    <div class="webtoon-info">
+                        <h2 class="webtoon-title">{{ webtoon.titulo }}</h2>
+
+                        <ul class="chapter-list">
+                            {% for capitulo in webtoon.capitulos.all|slice:":2" %}
+                                <li>
+                                    <span>Capítulo {{ capitulo.numero }}</span>
+                                    </li>
+                            {% empty %}
+                                <li>Nenhum capítulo</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </a>
+            {% empty %}
+                <p>Nenhuma webtoon cadastrada ainda.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
