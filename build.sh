@@ -1,11 +1,10 @@
 #!/bin/bash
 
-echo "Build script iniciado..."
+# Instala as dependências
+pip install -r requirements.txt
 
-# Coleta os arquivos estáticos usando python3
-python3 manage.py collectstatic --noinput
+# Roda as migrações do banco de dados
+python manage.py migrate
 
-# Roda as migrações do banco de dados usando python3
-python3 manage.py migrate
-
-echo "Build script finalizado."
+# Cria o superusuário usando nosso novo script
+python create_superuser.py
