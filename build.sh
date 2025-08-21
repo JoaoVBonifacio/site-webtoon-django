@@ -8,3 +8,5 @@ python manage.py migrate
 
 # Cria o superusuário usando nosso novo script
 python create_superuser.py
+
+# Forçando o rebuild para garantir que a última versão seja usada
