@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block content %}
+<div class="form-container">
+    <h1>Adicionar Nova Webtoon</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} {{ form.as_p }} <button type="submit" class="button-primary">Salvar Webtoon</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Bonis Webtoon</title>
+    <link rel="stylesheet" href="{% static 'webtoons/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'webtoons/css/forms.css' %}">
+    <style>
+        /* Estilos adicionais para a navegação */
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .nav-links a {
+            color: #bb86fc;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .nav-links a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="main-nav">
+            <a href="{% url 'home' %}" style="color: white; text-decoration: none;"><h1>Bonis Webtoon</h1></a>
+            
+            <div class="nav-links">
+                {% if user.is_authenticated %}
+                    <span>Olá, {{ user.username }}!</span>
+                    <a href="{% url 'logout' %}">Sair</a>
+                {% else %}
+                    <a href="{% url 'admin:login' %}?next={{ request.path }}">Login</a>
+                {% endif %}
+            </div>
+        </div>
+        
+        <hr>
+
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
